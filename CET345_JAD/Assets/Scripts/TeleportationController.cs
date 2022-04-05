@@ -11,11 +11,10 @@ public class TeleportationController : MonoBehaviour
     [SerializeField] private TeleportationProvider provider;
     private InputAction thumbStick;
     private bool active;
-    
+
     void Start()
     {
         //disables ray so no activae when not in use
-        rayInteractor.enabled = false;
         //Creates and sets up the teleport input action maps for use
         InputAction activate = actionAsset.FindActionMap("XRI RightHand").FindAction("Teleport Mode Activate");
         activate.Enable();
@@ -29,7 +28,7 @@ public class TeleportationController : MonoBehaviour
         thumbStick.Enable();
     }
 
-    
+
     void Update()
     {
         if (!active)
@@ -42,9 +41,9 @@ public class TeleportationController : MonoBehaviour
             return;
         }
 
-        if(!rayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit hit))
+        if (!rayInteractor.TryGetCurrent3DRaycastHit(out RaycastHit hit))
         {
-            rayInteractor.enabled = false;
+            rayInteractor.lineType = XRRayInteractor.LineType.StraightLine;
             active = false;
             return;
         }
@@ -54,19 +53,23 @@ public class TeleportationController : MonoBehaviour
             destinationPosition = hit.point
         };
 
+        rayInteractor.lineType = XRRayInteractor.LineType.StraightLine;
         provider.QueueTeleportRequest(request);
     }
 
     //function to be called when teleport sequence is activated
     private void TelportActivated(InputAction.CallbackContext context)
     {
-        rayInteractor.enabled = true;
+        rayInteractor.lineType = XRRayInteractor.LineType.ProjectileCurve;
+        provider.enabled = true;
         active = true;
     }
 
     //function called when teleport action is cancelled
     private void TeleportCancelled(InputAction.CallbackContext context)
     {
-        rayInteractor.enabled = false;
+        rayInteractor.lineType = XRRayInteractor.LineType.StraightLine;
+        active = false;
+        provider.enabled = false;
     }
 }
