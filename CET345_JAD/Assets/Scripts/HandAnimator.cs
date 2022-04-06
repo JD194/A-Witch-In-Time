@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class HandAnimator : MonoBehaviour
 {
+    public Animator thisHandAnimator;
+    public GameObject pointer;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +16,29 @@ public class HandAnimator : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Hands on Trigger Worked " + other.tag);
+        if (other.CompareTag("Keypad"))
+        {
+            Debug.Log("Hands picked up keypad with" + other.tag);
+            thisHandAnimator.SetTrigger("Pointing");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Keypad"))
+        {
+            thisHandAnimator.SetBool("Pointing", false);
+            pointer.SetActive(false);
+        }
+    }
+
+    public void SetPointed()
+    {
+        pointer.SetActive(true);
     }
 }
