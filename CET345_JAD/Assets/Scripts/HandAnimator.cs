@@ -32,13 +32,15 @@ public class HandAnimator : MonoBehaviour
     {
         if (other.CompareTag("Keypad"))
         {
-            thisHandAnimator.SetBool("Pointing", false);
+            thisHandAnimator.SetBool("Pointed", false);
             pointer.SetActive(false);
         }
     }
 
     public void SetPointed()
     {
+        Debug.Log("Animation Event Calling Function");
+        thisHandAnimator.SetBool("Pointed", true);
         pointer.SetActive(true);
     }
 }
