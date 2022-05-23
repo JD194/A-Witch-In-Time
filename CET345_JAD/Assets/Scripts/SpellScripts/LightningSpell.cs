@@ -47,12 +47,12 @@ public class LightningSpell : MonoBehaviour
         if (castForHand.mana + spellCost >= 0)
         {
             RaycastHit hitObject;
-            if (Physics.Raycast(spellPoint.transform.position, Camera.main.transform.forward, out hitObject, 200))
+            if (Physics.Raycast(spellPoint.transform.position, spellPoint.transform.forward, out hitObject, 200))
             {
                 if(hitObject.collider.tag == "Enemy")
                 {
                     StartCoroutine(LightningCast(hitObject.point));
-                    hitObject.collider.SendMessageUpwards("Lightning", SendMessageOptions.DontRequireReceiver);
+                    hitObject.collider.SendMessageUpwards("Lightning", 0, SendMessageOptions.DontRequireReceiver);
                 }
             }
             castForHand.UpdateMana(spellCost);
