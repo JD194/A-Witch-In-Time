@@ -32,11 +32,12 @@ public class EnemyScript : MonoBehaviour
                 GameObject[] enemies;
                 enemies = GameObject.FindGameObjectsWithTag("Enemy");
                 Vector3 thisPosition = gameObject.transform.position;
-                GameObject closestEnemy;
+                GameObject closestEnemy = null;
                 float closestDistance = Mathf.Infinity;
                 float distance = 0;
                 foreach (GameObject enemy in enemies)
                 {
+                    Debug.Log("running through enemy loop");
                     distance = Vector3.Distance(thisPosition, enemy.transform.position);
                     if(distance < closestDistance && enemy != gameObject)
                     {
@@ -44,17 +45,23 @@ public class EnemyScript : MonoBehaviour
                     }
                 }
 
-                RaycastHit hitObject;
-                if (Physics.Raycast(gameObject.transform.position, Camera.main.transform.forward, out hitObject, 200))
+                if(closestEnemy != null)
                 {
-                    if (hitObject.collider.tag == "Enemy")
+                    Debug.Log("enemy nout null");
+                    Vector3 direction;
+                    direction = closestEnemy.transform.position - transform.position;
+                    RaycastHit hitObject;
+                    if (Physics.Raycast(gameObject.transform.position, direction, out hitObject, 200))
                     {
-                        StartCoroutine(LightningCast(hitObject.point));
-                        hitObject.collider.SendMessageUpwards("Lightning", links, SendMessageOptions.DontRequireReceiver);
+                        if (hitObject.collider.tag == "Enemy")
+                        {
+                            StartCoroutine(LightningCast(hitObject.point));
+                            hitObject.collider.SendMessageUpwards("Lightning", links, SendMessageOptions.DontRequireReceiver);
+                        }
                     }
                 }
             }
-            Death();
+            StartCoroutine(Death());
         }
     }
 

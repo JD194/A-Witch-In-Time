@@ -32,6 +32,6 @@ public class CastScript : MonoBehaviour
     public void UpdateMana(int manaChangeValue)
     {
         mana += manaChangeValue;
-        manaValue.SetText(mana.ToString());
+        //manaValue.SetText(mana.ToString());
     }
 }

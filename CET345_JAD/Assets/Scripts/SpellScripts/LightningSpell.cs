@@ -8,7 +8,6 @@ public class LightningSpell : MonoBehaviour
 {
     public GameObject player;
     public GameObject spellPoint;
-    public GameObject lightning;
     public CastScript castForHand;
 
     public int spellCost;
@@ -47,7 +46,7 @@ public class LightningSpell : MonoBehaviour
         if (castForHand.mana + spellCost >= 0)
         {
             RaycastHit hitObject;
-            if (Physics.Raycast(spellPoint.transform.position, spellPoint.transform.forward, out hitObject, 200))
+            if (Physics.Raycast(gameObject.transform.position, gameObject.transform.forward, out hitObject, 200))
             {
                 if(hitObject.collider.tag == "Enemy")
                 {
@@ -62,7 +61,7 @@ public class LightningSpell : MonoBehaviour
     IEnumerator LightningCast(Vector3 hitPpoint)
     {
         lightningLine.enabled = true;
-        lightningLine.SetPosition(0, spellPoint.transform.position);
+        lightningLine.SetPosition(0, gameObject.transform.position);
         lightningLine.SetPosition(1, hitPpoint);
         yield return new WaitForSeconds(0.2f);
         lightningLine.enabled = false;

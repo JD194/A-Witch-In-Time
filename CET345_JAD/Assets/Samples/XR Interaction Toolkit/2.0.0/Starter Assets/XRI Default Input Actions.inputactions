@@ -178,13 +178,22 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Menu",
+                    "type": "Button",
+                    "id": "394e1d28-ded8-4ffc-8d9f-6449495d7ee2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "",
-                    "id": "b34c79c1-ab5e-4851-87ac-abc43705eae0",
-                    "path": "<XRController>{LeftHand}/triggerPressed",
+                    "id": "f04bb96e-3ca8-40b8-9758-833ed6db5e2a",
+                    "path": "<XRController>{LeftHand}/trigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
@@ -486,6 +495,17 @@
                     "processors": "",
                     "groups": "Generic XR Controller",
                     "action": "UI Press Value",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "80711ebf-d93e-4751-8916-2974cd3cbd48",
+                    "path": "<XRController>{LeftHand}/menu",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

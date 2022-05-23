@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class SpellUIScript : MonoBehaviour
 {
     public int selectedRuneSlot;
     public int[] runeSlots;
     public GameObject[] runeSlotVisuals;
+    public GameObject[] spellsLeft;
+    public GameObject[] spellsRight;
     public Sprite[] runeImages;
+    public Button[] handRunes;
     public TextMeshProUGUI spellLeft;
     public TextMeshProUGUI spellRight;
 
@@ -34,6 +38,8 @@ public class SpellUIScript : MonoBehaviour
         if(0 <= selectedRuneSlot && selectedRuneSlot <= 3)
         {
             runeSlots[selectedRuneSlot] = runeSelected;
+            Debug.Log(runeSelected);
+            handRunes[selectedRuneSlot].image.sprite = runeImages[runeSelected];
             UpdateSpell();
         }
     }
@@ -43,11 +49,21 @@ public class SpellUIScript : MonoBehaviour
     {
         if(selectedRuneSlot == 0 || selectedRuneSlot == 1)
         {
-            spellLeft.SetText(GetSpell(runeSlots[0], runeSlots[1]).ToString());
+            spellLeft.SetText(GetSpellName(GetSpell(runeSlots[0], runeSlots[1])));
+            for(int i = 0; i < spellsLeft.Length; i++)
+            {
+                spellsLeft[i].SetActive(false);
+            }
+            spellsLeft[GetSpell(runeSlots[0], runeSlots[1])].SetActive(true);
         }
         else if(selectedRuneSlot == 2 || selectedRuneSlot == 3)
         {
-            spellRight.SetText((runeSlots[2] + runeSlots[3]).ToString());
+            spellRight.SetText(GetSpellName((runeSlots[2] + runeSlots[3])));
+            for (int i = 0; i < spellsRight.Length; i++)
+            {
+                spellsRight[i].SetActive(false);
+            }
+            spellsRight[GetSpell(runeSlots[0], runeSlots[1])].SetActive(true);
         }
     }
 
@@ -177,6 +193,80 @@ public class SpellUIScript : MonoBehaviour
         }
 
         return spellCreated;
+    }
+
+    private string GetSpellName(int spellVal)
+    {
+        string spell = "";
+
+        if(spellVal == 0)
+        {
+            spell = "Torch";
+        }
+        else if (spellVal == 1)
+        {
+            spell = "Steam";
+        }
+        else if (spellVal == 2)
+        {
+            spell = "Lightning";
+        }
+        else if (spellVal == 3)
+        {
+            spell = "Magma Splash";
+        }
+        else if (spellVal == 4)
+        {
+            spell = "Fireball";
+        }
+        else if (spellVal == 5)
+        {
+            spell = "Create Water";
+        }
+        else if (spellVal == 6)
+        {
+            spell = "Cloud";
+        }
+        else if (spellVal == 7)
+        {
+            spell = "Mud Spray";
+        }
+        else if (spellVal == 8)
+        {
+            spell = "Water Stream";
+        }
+        else if (spellVal == 9)
+        {
+            spell = "Breeze";
+        }
+        else if (spellVal == 10)
+        {
+            spell = "Dust Cloud";
+        }
+        else if (spellVal == 11)
+        {
+            spell = "Air Blade";
+        }
+        else if (spellVal == 12)
+        {
+            spell = "Earth Shield";
+        }
+        else if (spellVal == 13)
+        {
+            spell = "Rock Bullet";
+        }
+        else if (spellVal == 14)
+        {
+            spell = "Crush";
+        }
+
+
+        return spell;
+    }
+
+    public void close()
+    {
+
     }
 
     /* Spell List
