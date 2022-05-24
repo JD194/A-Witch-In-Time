@@ -11,6 +11,7 @@ public class TestController : MonoBehaviour
 
     public bool steamActive;
     public bool torchActive;
+    public bool waterCreateActive;
 
 
 

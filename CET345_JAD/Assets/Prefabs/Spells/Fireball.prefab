@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 9201459784065859479}
   - component: {fileID: 3495157863854340788}
   - component: {fileID: 6814234996047437896}
-  - component: {fileID: 5690827444882523603}
   - component: {fileID: -825136846382379710}
   - component: {fileID: 6187036933259141403}
-  m_Layer: 0
+  - component: {fileID: 7045852157204104309}
+  m_Layer: 8
   m_Name: Fireball
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,15 +28,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3230369226439419423}
-  m_LocalRotation: {x: 0.2178368, y: 0.16723268, z: -0.68749815, w: 0.6722549}
-  m_LocalPosition: {x: 0.0001293991, y: 0.00003456718, z: 0.000027309417}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5985966968937082119}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 31.522, y: -5.026, z: -92.704}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &3495157863854340788
 Light:
   m_ObjectHideFlags: 0
@@ -119,19 +119,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
---- !u!114 &5690827444882523603
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3230369226439419423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6f5c7f12b610024fa9f8f68275ab689, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 0}
 --- !u!135 &-825136846382379710
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -143,7 +130,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.17
+  m_Radius: 0.09
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6187036933259141403
 Rigidbody:
@@ -156,11 +143,24 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
+--- !u!114 &7045852157204104309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3230369226439419423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f1e907e4c9181d4d99e30f06663745f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
 --- !u!1 &3295238597351298102
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 5985966968937082119}
   - component: {fileID: 1730942903136361664}
   - component: {fileID: 3096969869866253385}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fire_Medium-Smoke-Sparks_RateOverTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,8 +186,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3295238597351298102}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00000049105, y: 0.0042877, z: -0.00000014128}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -196,7 +196,7 @@ Transform:
   - {fileID: 3024619412475505691}
   m_Father: {fileID: 9201459784065859479}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &1730942903136361664
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -5058,7 +5058,7 @@ GameObject:
   - component: {fileID: 5180371502490669462}
   - component: {fileID: 933237119883223121}
   - component: {fileID: 4471134214984761560}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ParticleSystem_Fire_RateOverTime_Medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9944,7 +9944,7 @@ GameObject:
   - component: {fileID: 2933200445104193195}
   - component: {fileID: 7179639524180987756}
   - component: {fileID: 5862590286738468837}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ParticleSystem_Smoke_RateOverTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14831,7 +14831,7 @@ GameObject:
   - component: {fileID: 3024619412475505691}
   - component: {fileID: 7128772753250852316}
   - component: {fileID: 5769484797510040917}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ParticleSystem_Sparks_RateOverTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19714,7 +19714,7 @@ GameObject:
   - component: {fileID: 2370119971884606171}
   - component: {fileID: 7778769710642352924}
   - component: {fileID: 6416665201583453077}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ParticleSystem_Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -571,7 +571,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 4
+    type: 10
     angle: 45
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -5219,11 +5219,11 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 8
+    type: 10
     angle: 25
     length: 0.8
     boxThickness: {x: 0, y: 0, z: 0}
-    radiusThickness: 0
+    radiusThickness: 0.36
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
@@ -5306,7 +5306,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.25
+      value: 2.15
       mode: 0
       spread: 0
       speed:
@@ -9308,6 +9308,7 @@ GameObject:
   - component: {fileID: 198039942544698878}
   - component: {fileID: 199188810652770198}
   - component: {fileID: 114913718520774464}
+  - component: {fileID: 7805387154990189547}
   m_Layer: 0
   m_Name: CFX2_Big_Splash (No Collision)
   m_TagString: Untagged
@@ -14024,6 +14025,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OnlyDeactivate: 0
+--- !u!65 &7805387154990189547
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687118924408352}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.797426, y: 6.7974277, z: 0.24174851}
+  m_Center: {x: 0, y: -3.4397034e-16, z: -0.22579518}
 --- !u!1 &1947517658076526
 GameObject:
   m_ObjectHideFlags: 0

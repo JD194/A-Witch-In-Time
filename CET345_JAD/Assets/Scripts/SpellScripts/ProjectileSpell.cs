@@ -40,7 +40,7 @@ public class ProjectileSpell : MonoBehaviour
     {
         if (castForHand.mana + spellCost >= 0)
         {
-            Instantiate(projectile, gameObject.transform.position, projectile.transform.rotation);
+            Instantiate(projectile, gameObject.transform.position, gameObject.transform.rotation);
             castForHand.UpdateMana(spellCost);
         }
     }

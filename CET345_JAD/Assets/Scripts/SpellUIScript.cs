@@ -15,6 +15,8 @@ public class SpellUIScript : MonoBehaviour
     public Button[] handRunes;
     public TextMeshProUGUI spellLeft;
     public TextMeshProUGUI spellRight;
+    public TextMeshProUGUI spellLeftHand;
+    public TextMeshProUGUI spellRightHand;
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +52,8 @@ public class SpellUIScript : MonoBehaviour
         if(selectedRuneSlot == 0 || selectedRuneSlot == 1)
         {
             spellLeft.SetText(GetSpellName(GetSpell(runeSlots[0], runeSlots[1])));
-            for(int i = 0; i < spellsLeft.Length; i++)
+            spellLeftHand.SetText(GetSpellName(GetSpell(runeSlots[0], runeSlots[1])));
+            for (int i = 0; i < spellsLeft.Length; i++)
             {
                 spellsLeft[i].SetActive(false);
             }
@@ -59,6 +62,7 @@ public class SpellUIScript : MonoBehaviour
         else if(selectedRuneSlot == 2 || selectedRuneSlot == 3)
         {
             spellRight.SetText(GetSpellName((runeSlots[2] + runeSlots[3])));
+            spellRightHand.SetText(GetSpellName((runeSlots[2] + runeSlots[3])));
             for (int i = 0; i < spellsRight.Length; i++)
             {
                 spellsRight[i].SetActive(false);
