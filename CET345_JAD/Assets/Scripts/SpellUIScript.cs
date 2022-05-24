@@ -274,7 +274,7 @@ public class SpellUIScript : MonoBehaviour
      *  Fire(0) + Fire(0) = Torch (0)
      *  Fire(0) + Water(1) = Steam (1)
      *  Fire(0) + Air(2) = Lightning (2)
-     *  Fire(0) + Earth(3) = Magma Splash (3)
+     *  Fire(0) + Earth(3) = Magma rock (3)
      *  Fire(0) + Force(4)  Fire Shot (4)
      *  
      *  Water(1) + Fire(0) = Steam (1)
@@ -289,7 +289,7 @@ public class SpellUIScript : MonoBehaviour
      *  Air(2) + Earth(3) Dust Cloud (10)
      *  Air(2) + Force(4) Air Blade (11)
      *  
-     *  Earth(3) + Fire(0) = Magma Splash (3)
+     *  Earth(3) + Fire(0) = Magma rock (3)
      *  Earth(3) + Water(1) = Mud Spray (7)
      *  Earth(3) + Air(2) = Dust Cloud (10)
      *  Earth(3) + Earth(3) = Earth Shield (12)

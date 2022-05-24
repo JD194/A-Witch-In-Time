@@ -11,9 +11,6 @@ public class CastScript : MonoBehaviour
 
     public GameObject player;
 
-    public GameObject torch;
-    public GameObject steam;
-
     public TextMeshProUGUI manaValue;
     
 

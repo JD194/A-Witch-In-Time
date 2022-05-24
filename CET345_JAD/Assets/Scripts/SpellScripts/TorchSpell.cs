@@ -14,7 +14,6 @@ public class TorchSpell : MonoBehaviour
 
     [SerializeField] private InputActionAsset actionAsset;
 
-
     public int handCode;
     // Start is called before the first frame update
     void Start()
