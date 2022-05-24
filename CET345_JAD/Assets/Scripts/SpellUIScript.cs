@@ -289,7 +289,7 @@ public class SpellUIScript : MonoBehaviour
      *  
      *  Air(2) + Fire(0) = Lightning (2)
      *  Air(2) + Water(1) = Cloud (6)
-     *  Air(2) + Air(2) = Breeze (9)
+     *  Air(2) + Air(2) = Tornado? (9)
      *  Air(2) + Earth(3) Dust Cloud (10)
      *  Air(2) + Force(4) Air Blade (11)
      *  
