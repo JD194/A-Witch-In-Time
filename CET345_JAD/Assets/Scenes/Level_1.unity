@@ -580,7 +580,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2063141106}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &76395000
 MonoBehaviour:
@@ -598,7 +598,7 @@ MonoBehaviour:
   steam: {fileID: 807577353}
   castForHand: {fileID: 318846574}
   spellCost: -20
-  actionAsset: {fileID: 0}
+  actionAsset: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   handCode: 0
 --- !u!1 &148696329
 GameObject:
@@ -749,6 +749,7 @@ GameObject:
   - component: {fileID: 180074698}
   - component: {fileID: 180074697}
   - component: {fileID: 180074696}
+  - component: {fileID: 180074702}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Enemy
@@ -958,6 +959,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: -22.167, y: -12.143, z: -29.729}
+--- !u!54 &180074702
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180074695}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &201473455
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,6 +1592,7 @@ MonoBehaviour:
   actionAsset: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   steamActive: 0
   torchActive: 0
+  shieldActive: 0
   waterCreateActive: 0
   speed: 0
   rotationSpeed: 0
@@ -1877,8 +1895,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d92ba5bbd2b21f46b2205bf9643892a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mana: 100
-  maxMana: 100
+  mana: 10000
+  maxMana: 10000
   restoreDelay: 3
   timeToRestore: 0
   restoring: 0
@@ -2541,7 +2559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6367999737900960655, guid: 0cdf4c1e8e11fbc44af3e4f8b00367a9, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6367999737900960655, guid: 0cdf4c1e8e11fbc44af3e4f8b00367a9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3060,6 +3078,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 552178274}
   m_CullTransparentMesh: 1
+--- !u!1 &596360983
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 596360984}
+  - component: {fileID: 596360985}
+  m_Layer: 8
+  m_Name: EarthShield
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &596360984
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596360983}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2063141106}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &596360985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596360983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6d144f3ee78d54478145350d9fad4c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  shield: {fileID: 0}
+  castForHand: {fileID: 0}
+  spellCost: 0
+  actionAsset: {fileID: 0}
+  handCode: 0
 --- !u!1 &598987452
 GameObject:
   m_ObjectHideFlags: 0
@@ -3107,7 +3175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e988983f96fe1dd48800bcdfc82f23e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LineWidth: 0.05
+  m_LineWidth: 0.02
   m_OverrideInteractorLineLength: 1
   m_LineLength: 10
   m_WidthCurve:
@@ -3617,7 +3685,7 @@ MonoBehaviour:
   Tornado: {fileID: 100000, guid: 352304b7fbe11f445970df6ae36e6227, type: 3}
   castForHand: {fileID: 318846574}
   spellCost: -60
-  actionAsset: {fileID: 0}
+  actionAsset: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   handCode: 0
 --- !u!1 &646467919
 GameObject:
@@ -3980,11 +4048,15 @@ MonoBehaviour:
   runeSlotVisuals: []
   spellsLeft:
   - {fileID: 1855314829}
-  - {fileID: 1907965198}
   - {fileID: 76394998}
+  - {fileID: 1907965198}
   - {fileID: 1561938770}
   - {fileID: 492424642}
   - {fileID: 1059505044}
+  - {fileID: 4948995095776917620}
+  - {fileID: 8298466824444768699}
+  - {fileID: 1768140763}
+  - {fileID: 620497249}
   spellsRight: []
   runeImages:
   - {fileID: 21300000, guid: 51e410e0a4e0ef34ca55c6b886e4a573, type: 3}
@@ -4032,6 +4104,7 @@ GameObject:
   - component: {fileID: 710247683}
   - component: {fileID: 710247682}
   - component: {fileID: 710247681}
+  - component: {fileID: 710247687}
   m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Enemy
@@ -4241,6 +4314,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: -22.167, y: -12.143, z: -29.729}
+--- !u!54 &710247687
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 710247680}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &710647682
 GameObject:
   m_ObjectHideFlags: 0
@@ -4750,6 +4839,56 @@ MonoBehaviour:
   actionAsset: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   rayInteractor: {fileID: 598987456}
   provider: {fileID: 779597411}
+--- !u!1 &789569746
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 789569747}
+  - component: {fileID: 789569748}
+  m_Layer: 8
+  m_Name: Dust Cloud
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &789569747
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789569746}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2063141106}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &789569748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789569746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ce497b511b68b647835a511d263c58d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  Tornado: {fileID: 100000, guid: d82a81777181eb7409703c444f34ae65, type: 3}
+  castForHand: {fileID: 318846574}
+  spellCost: -20
+  actionAsset: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  handCode: 0
 --- !u!1 &798976583
 GameObject:
   m_ObjectHideFlags: 0
@@ -5129,6 +5268,7 @@ GameObject:
   - component: {fileID: 865525218}
   - component: {fileID: 865525222}
   - component: {fileID: 865525223}
+  - component: {fileID: 865525224}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Enemy
@@ -5338,6 +5478,22 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!54 &865525224
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865525217}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &902707780
 GameObject:
   m_ObjectHideFlags: 0
@@ -7535,6 +7691,7 @@ GameObject:
   - component: {fileID: 1200550493}
   - component: {fileID: 1200550492}
   - component: {fileID: 1200550491}
+  - component: {fileID: 1200550497}
   m_Layer: 0
   m_Name: Cube (4)
   m_TagString: Enemy
@@ -7744,6 +7901,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: -22.167, y: -12.143, z: -29.729}
+--- !u!54 &1200550497
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200550490}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1234258146
 GameObject:
   m_ObjectHideFlags: 0
@@ -9863,6 +10036,55 @@ MonoBehaviour:
   spellCost: -10
   actionAsset: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   handCode: 0
+--- !u!1 &1794730775
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1794730776}
+  - component: {fileID: 1794730777}
+  m_Layer: 8
+  m_Name: Wind Blade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1794730776
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794730775}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2063141106}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1794730777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794730775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f41455a48213c41a10fc6802f8c456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectile: {fileID: 100000, guid: 62cb792f20856b54692432fb62545221, type: 3}
+  castForHand: {fileID: 318846574}
+  spellCost: -20
+  handCode: 0
+  actionAsset: {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &1811426756
 GameObject:
   m_ObjectHideFlags: 0
@@ -10510,6 +10732,7 @@ GameObject:
   - component: {fileID: 1978170484}
   - component: {fileID: 1978170483}
   - component: {fileID: 1978170482}
+  - component: {fileID: 1978170488}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Enemy
@@ -10719,6 +10942,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: -22.167, y: -12.143, z: -29.729}
+--- !u!54 &1978170488
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978170481}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2011925648
 GameObject:
   m_ObjectHideFlags: 0
@@ -11073,8 +11312,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1855314830}
-  - {fileID: 1540335721}
   - {fileID: 76394999}
+  - {fileID: 1540335721}
   - {fileID: 1561938771}
   - {fileID: 492424643}
   - {fileID: 1059505045}
@@ -11082,6 +11321,9 @@ Transform:
   - {fileID: 8298466824444768698}
   - {fileID: 1768140764}
   - {fileID: 620497250}
+  - {fileID: 789569747}
+  - {fileID: 1794730776}
+  - {fileID: 596360984}
   m_Father: {fileID: 543450652919374367}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 1.47, y: -17.475, z: 0}

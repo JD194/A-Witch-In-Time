@@ -21,8 +21,8 @@ public class MagmaRockScript : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            SendMessageUpwards("Rock", 10, SendMessageOptions.DontRequireReceiver);
-            SendMessageUpwards("Fire", 10, SendMessageOptions.DontRequireReceiver);
+            other.SendMessageUpwards("Rock", 10, SendMessageOptions.DontRequireReceiver);
+            other.SendMessageUpwards("Fire", 10, SendMessageOptions.DontRequireReceiver);
         }
         Destroy(gameObject);
     }

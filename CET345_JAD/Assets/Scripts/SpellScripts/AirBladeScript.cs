@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireballScript : MonoBehaviour
+public class AirBladeScript : MonoBehaviour
 {
     public float speed;
     // Start is called before the first frame update
@@ -21,7 +21,7 @@ public class FireballScript : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            other.SendMessageUpwards("Fire", 60, SendMessageOptions.DontRequireReceiver);
+            other.SendMessageUpwards("HealthChange", -40, SendMessageOptions.DontRequireReceiver);
         }
         Destroy(gameObject);
     }

@@ -20,7 +20,10 @@ public class TornadoScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(Time.time > timeTilGone)
+        {
+            Destroy(gameObject);
+        }
     }
 
 

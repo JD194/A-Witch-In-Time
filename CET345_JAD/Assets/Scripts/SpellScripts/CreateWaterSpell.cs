@@ -15,6 +15,8 @@ public class CreateWaterSpell : MonoBehaviour
 
 
     public int handCode;
+
+    InputAction activate;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,13 +24,13 @@ public class CreateWaterSpell : MonoBehaviour
 
         if (handCode == 0)
         {
-            InputAction activate = actionAsset.FindActionMap("XRI LeftHand").FindAction("Activate");
+            activate = actionAsset.FindActionMap("XRI LeftHand").FindAction("Activate");
             activate.Enable();
             activate.performed += Cast;
         }
         else if (handCode == 1)
         {
-            InputAction activate = actionAsset.FindActionMap("XRI RightHand").FindAction("Activate");
+            activate = actionAsset.FindActionMap("XRI RightHand").FindAction("Activate");
             activate.Enable();
             activate.performed += Cast;
         }
@@ -37,6 +39,16 @@ public class CreateWaterSpell : MonoBehaviour
     private void Update()
     {
 
+    }
+
+    private void OnEnable()
+    {
+        activate.performed += Cast;
+    }
+
+    private void OnDisable()
+    {
+        activate.performed -= Cast;
     }
 
     private void Cast(InputAction.CallbackContext context)

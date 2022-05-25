@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.XR.Interaction.Toolkit;
 
-public class TorchSpell : MonoBehaviour
+public class EarthShieldSpell : MonoBehaviour
 {
     public GameObject player;
-    public GameObject torch;
+    public GameObject shield;
     public CastScript castForHand;
 
     public int spellCost;
 
     [SerializeField] private InputActionAsset actionAsset;
+
 
     public int handCode;
 
@@ -20,6 +20,7 @@ public class TorchSpell : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
 
         if (handCode == 0)
         {
@@ -52,10 +53,10 @@ public class TorchSpell : MonoBehaviour
 
     private void Cast(InputAction.CallbackContext context)
     {
-        if (!player.GetComponent<TestController>().torchActive && castForHand.mana + spellCost >= 0)
+        if (!player.GetComponent<TestController>().steamActive && castForHand.mana + spellCost >= 0)
         {
-            player.GetComponent<TestController>().torchActive = true;
-            torch.SetActive(true);
+            player.GetComponent<TestController>().steamActive = true;
+            shield.SetActive(true);
             castForHand.UpdateMana(spellCost);
         }
     }
