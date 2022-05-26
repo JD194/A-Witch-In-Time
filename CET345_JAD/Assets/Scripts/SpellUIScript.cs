@@ -53,22 +53,32 @@ public class SpellUIScript : MonoBehaviour
         {
             spellLeft.SetText(GetSpellName(GetSpell(runeSlots[0], runeSlots[1])));
             spellLeftHand.SetText(GetSpellName(GetSpell(runeSlots[0], runeSlots[1])));
-            for (int i = 0; i < spellsLeft.Length; i++)
-            {
-                spellsLeft[i].SetActive(false);
-            }
-            spellsLeft[GetSpell(runeSlots[0], runeSlots[1])].SetActive(true);
         }
         else if(selectedRuneSlot == 2 || selectedRuneSlot == 3)
         {
             spellRight.SetText(GetSpellName((runeSlots[2] + runeSlots[3])));
             spellRightHand.SetText(GetSpellName((runeSlots[2] + runeSlots[3])));
-            for (int i = 0; i < spellsRight.Length; i++)
-            {
-                spellsRight[i].SetActive(false);
-            }
-            spellsRight[GetSpell(runeSlots[0], runeSlots[1])].SetActive(true);
         }
+    }
+
+    private void OnEnable()
+    {
+        for (int i = 0; i < spellsLeft.Length; i++)
+        {
+            spellsLeft[i].SetActive(false);
+        }
+
+        for (int i = 0; i < spellsRight.Length; i++)
+        {
+            spellsRight[i].SetActive(false);
+        }
+    }
+
+    private void OnDisable()
+    {
+        spellsLeft[GetSpell(runeSlots[0], runeSlots[1])].SetActive(true);
+
+        spellsRight[GetSpell(runeSlots[2], runeSlots[3])].SetActive(true);
     }
 
     //Checks selsected runes for relevant hand and returns the spell code these combine to create
@@ -241,7 +251,7 @@ public class SpellUIScript : MonoBehaviour
         }
         else if (spellVal == 9)
         {
-            spell = "Breeze";
+            spell = "Tornado";
         }
         else if (spellVal == 10)
         {

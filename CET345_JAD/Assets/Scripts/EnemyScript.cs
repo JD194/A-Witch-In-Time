@@ -1,12 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemyScript : MonoBehaviour
 {
     public bool lightningImmunity;
-    public bool rubberised;
+    public bool shielded;
     public bool wet;
+
+    public GameObject heatBar;
+    public GameObject healthBar;
+    public GameObject wetMarker;
+    public GameObject blindMarker;
+
+    public TextMeshProUGUI damageText;
+    public TextMeshProUGUI heatText;
+
+    public Material lightningImmuneMat;
+    public GameObject shieldObject;
 
     public int currentHeat;
     public int maxHeat;
@@ -25,28 +37,57 @@ public class EnemyScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for(int i = 0; i < heatSinks; i++)
+        
+    }
+
+    void Update()
+    {
+        if (currentHeat > 0 && !cooling && Time.time >= timeToCool)
+        {
+            cooling = true;
+            StartCoroutine(Cool());
+        }
+    }
+
+    public void SetUpEnemy(int heatSinksPassed, bool lightningImmune, bool shield)
+    {
+        heatSinks = heatSinksPassed;
+        lightningImmunity = lightningImmune;
+        shielded = shield;
+
+        for (int i = 0; i < heatSinks; i++)
         {
             heatSinkObs[i].SetActive(true);
         }
+
+        if (lightningImmunity)
+        {
+            gameObject.GetComponent<MeshRenderer>().material = lightningImmuneMat;
+        }
+
+        if (shielded)
+        {
+            shieldObject.SetActive(true);
+        }
+
+        RectTransform heatBarRect = (RectTransform)heatBar.transform;
+        heatBarRect.sizeDelta = new Vector2(currentHeat, heatBarRect.sizeDelta.y);
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if(currentHeat > 0 && !cooling && Time.time >= timeToCool)
-        {
 
-        }
-    }
-
-    void Lightning(int links)
+    public void Lightning(int links)
     {
-        if(!lightningImmunity || !rubberised)
+
+        if(!lightningImmunity)
         {
-            if(links < 2)
+            if(links < 6)
             {
                 if (!wet)
+                {
+                    links += 2;
+                }
+                else
                 {
                     links++;
                 }
@@ -54,9 +95,16 @@ public class EnemyScript : MonoBehaviour
             }
             StartCoroutine(Death());
         }
+
         else if (wet)
         {
+            links++;
             zapNearestEnemy(links);
+        }
+
+        if (heatSinks > 0)
+        {
+            HealthChange(5 * heatSinks);
         }
     }
 
@@ -80,7 +128,7 @@ public class EnemyScript : MonoBehaviour
 
         if (closestEnemy != null)
         {
-            Debug.Log("enemy nout null");
+            Debug.Log("enemy nou null");
             Vector3 direction;
             direction = closestEnemy.transform.position - transform.position;
             RaycastHit hitObject;
@@ -104,10 +152,21 @@ public class EnemyScript : MonoBehaviour
         lightningLine.enabled = false;
     }
 
-    void Fire(int heatVal)
+    public void Fire(int heatVal)
     {
-        currentHeat += heatVal;
-        if(currentHeat >= maxHeat)
+        StopCoroutine(SetHeatText(0));
+
+        if (shielded)
+        {
+            heatVal *= 2;
+        }
+
+        int actualHeatVal = heatVal - (5 * heatSinks);
+        currentHeat += actualHeatVal;
+
+        StartCoroutine(SetHeatText(actualHeatVal));
+
+        if (currentHeat >= maxHeat)
         {
             if(heatSinks > 0)
             {
@@ -119,28 +178,51 @@ public class EnemyScript : MonoBehaviour
                 StartCoroutine(Death());
             }
         }
+
+        RectTransform heatBarRect = (RectTransform)heatBar.transform;
+        heatBarRect.sizeDelta = new Vector2(currentHeat, heatBarRect.sizeDelta.y);
+
         StopCoroutine(Cool());
         timeToCool = Time.time + coolDelay;
     }
 
-    void Rock(int damage)
+    public void Rock(int damage)
     {
-        HealthChange(-damage);
+        if (shielded)
+        {
+            damage = damage / 2;
+        }
+        HealthChange(damage);
     }
 
-    void Water()
+    public void Water()
     {
+        if (!cooling)
+        {
+            cooling = true;
+            StartCoroutine(Cool());
+        }
+        wetMarker.SetActive(true);
         wet = true;
     }
 
-    void HealthChange(int healthVal)
+    public void HealthChange(int healthVal)
     {
-        health += healthVal;
+        StopCoroutine(SetDamageText(0));
+
+        health -= healthVal;
+
+        StartCoroutine(SetDamageText(healthVal));
+
         if(health > maxHealth)
         {
             health = maxHealth;
         }
-        if(health <= 0)
+
+        RectTransform healthBarRect = (RectTransform)healthBar.transform;
+        healthBarRect.sizeDelta = new Vector2(health, healthBarRect.sizeDelta.y);
+
+        if (health <= 0)
         {
             StartCoroutine(Death());
         }
@@ -152,7 +234,11 @@ public class EnemyScript : MonoBehaviour
         {
             yield return new WaitForSeconds(0.1f);
             currentHeat--;
+
+            RectTransform heatBarRect = (RectTransform)heatBar.transform;
+            heatBarRect.sizeDelta = new Vector2(currentHeat, heatBarRect.sizeDelta.y);
         }
+
         cooling = false;
     }
 
@@ -160,5 +246,19 @@ public class EnemyScript : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
         Destroy(gameObject);
+    }
+
+    IEnumerator SetHeatText(int heatVal)
+    {
+        heatText.SetText("+" + heatVal);
+        yield return new WaitForSeconds(0.2f);
+        heatText.SetText("");
+    }
+
+    IEnumerator SetDamageText(int damageVal)
+    {
+        damageText.SetText("-" + damageVal);
+        yield return new WaitForSeconds(0.2f);
+        damageText.SetText("");
     }
 }

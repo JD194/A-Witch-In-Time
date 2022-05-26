@@ -53,9 +53,9 @@ public class EarthShieldSpell : MonoBehaviour
 
     private void Cast(InputAction.CallbackContext context)
     {
-        if (!player.GetComponent<TestController>().steamActive && castForHand.mana + spellCost >= 0)
+        if (!player.GetComponent<TestController>().shieldActive && castForHand.mana + spellCost >= 0)
         {
-            player.GetComponent<TestController>().steamActive = true;
+            player.GetComponent<TestController>().shieldActive = true;
             shield.SetActive(true);
             castForHand.UpdateMana(spellCost);
         }

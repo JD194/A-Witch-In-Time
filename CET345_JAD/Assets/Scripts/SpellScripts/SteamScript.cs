@@ -19,9 +19,9 @@ public class SteamScript : MonoBehaviour
 
     private void OnEnable()
     {
-        StartCoroutine(steamTimer());
+        StartCoroutine(SteamTimer());
     }
-    IEnumerator steamTimer()
+    IEnumerator SteamTimer()
     {
         yield return new WaitForSeconds(10);
         player.GetComponent<TestController>().steamActive = false;
