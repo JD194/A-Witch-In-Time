@@ -8,6 +8,8 @@ TagManager:
   - Keypad
   - Enemy
   - FxTemporaire
+  - Spawner
+  - Computer
   layers:
   - Default
   - TransparentFX

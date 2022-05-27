@@ -38,9 +38,10 @@ public class MudSprayScript : MonoBehaviour
         {
             if (other.CompareTag("Enemy"))
             {
+                Debug.Log("MUD IS HITTING");
                 SendMessageUpwards("Rock", 2, SendMessageOptions.DontRequireReceiver);
+                timeToHit = Time.time + hitDelay;
             }
-            timeToHit = Time.time + hitDelay;
         }
     }
 }

@@ -12,6 +12,9 @@ public class EnemySpawner : MonoBehaviour
     public GameObject EnemyPrefab;
 
     public Transform[] spawnPoints;
+
+    public float timeToSpawn;
+    public float spawnDelay;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +24,11 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Time.time > timeToSpawn)
+        {
+            SpawnEnemy();
+            timeToSpawn = Time.time + spawnDelay;
+        }
     }
 
     void SpawnEnemy()

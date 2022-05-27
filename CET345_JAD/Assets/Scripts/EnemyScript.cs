@@ -8,6 +8,7 @@ public class EnemyScript : MonoBehaviour
     public bool lightningImmunity;
     public bool shielded;
     public bool wet;
+    public bool dead;
 
     public GameObject heatBar;
     public GameObject healthBar;
@@ -31,13 +32,17 @@ public class EnemyScript : MonoBehaviour
     public float coolDelay;
     public bool cooling;
 
+    public GameObject crushParticles;
+
     public LineRenderer lightningLine;
     public GameObject[] heatSinkObs;
+
+    public EnemySpawner spawner;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        spawner = GameObject.FindGameObjectWithTag("Spawner").GetComponent<EnemySpawner>();
     }
 
     void Update()
@@ -79,7 +84,7 @@ public class EnemyScript : MonoBehaviour
     public void Lightning(int links)
     {
 
-        if(!lightningImmunity)
+        if(!lightningImmunity && !dead)
         {
             if(links < 6)
             {
@@ -93,6 +98,8 @@ public class EnemyScript : MonoBehaviour
                 }
                 zapNearestEnemy(links);
             }
+            spawner.totalKilled++;
+            spawner.killedLightning++;
             StartCoroutine(Death());
         }
 
@@ -175,6 +182,8 @@ public class EnemyScript : MonoBehaviour
             }
             else
             {
+                spawner.totalKilled++;
+                spawner.killedFire++;
                 StartCoroutine(Death());
             }
         }
@@ -184,6 +193,14 @@ public class EnemyScript : MonoBehaviour
 
         StopCoroutine(Cool());
         timeToCool = Time.time + coolDelay;
+    }
+
+    public void Air(int damage)
+    {
+        if (!shielded)
+        {
+            HealthChange(damage);
+        }
     }
 
     public void Rock(int damage)
@@ -224,8 +241,29 @@ public class EnemyScript : MonoBehaviour
 
         if (health <= 0)
         {
+            spawner.totalKilled++;
+            spawner.killedPhysical++;
             StartCoroutine(Death());
         }
+    }
+
+    public void Crush()
+    {
+        StartCoroutine(CrushSystem());
+    }
+
+    IEnumerator CrushSystem()
+    {
+        crushParticles.SetActive(true);
+        Vector3 objectScaleReduction;
+        objectScaleReduction = gameObject.transform.localScale / 10f;
+        for(int i = 0; i < 10; i++)
+        {
+            gameObject.transform.localScale -= objectScaleReduction;
+            yield return new WaitForSeconds(0.1f);
+        }
+        yield return new WaitForSeconds(0.1f);
+        StartCoroutine(Death());
     }
 
     IEnumerator Cool()
@@ -244,6 +282,7 @@ public class EnemyScript : MonoBehaviour
 
     IEnumerator Death()
     {
+        dead = true;
         yield return new WaitForSeconds(0.2f);
         Destroy(gameObject);
     }
@@ -261,4 +300,6 @@ public class EnemyScript : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         damageText.SetText("");
     }
+
+
 }
